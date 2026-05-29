@@ -87,58 +87,10 @@ end;
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "armenian"; MessagesFile: "compiler:Languages\Armenian.isl"
-Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
-Name: "bulgarian"; MessagesFile: "compiler:Languages\Bulgarian.isl"
-Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
-Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
-Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
-Name: "danish"; MessagesFile: "compiler:Languages\Danish.isl"
-Name: "dutch"; MessagesFile: "compiler:Languages\Dutch.isl"
-Name: "finnish"; MessagesFile: "compiler:Languages\Finnish.isl"
-Name: "french"; MessagesFile: "compiler:Languages\French.isl"
-Name: "german"; MessagesFile: "compiler:Languages\German.isl"
-Name: "hebrew"; MessagesFile: "compiler:Languages\Hebrew.isl"
-Name: "icelandic"; MessagesFile: "compiler:Languages\Icelandic.isl"
-Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
-Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
-Name: "norwegian"; MessagesFile: "compiler:Languages\Norwegian.isl"
-Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
-Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
-Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "slovak"; MessagesFile: "compiler:Languages\Slovak.isl"
-Name: "slovenian"; MessagesFile: "compiler:Languages\Slovenian.isl"
-Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
-Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
-Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [CustomMessages]
 RemoveDataFolder=Remove all data and configuration?
 english.RemoveDataFolder=Remove all data and configuration?
-armenian.RemoveDataFolder=Հեռացնե՞լ բոլոր տվյալները և կոնֆիգուրացիան:
-brazilianportuguese.RemoveDataFolder=Remover todos os dados e configuração?
-bulgarian.RemoveDataFolder=Премахване на всички данни и конфигурация?
-catalan.RemoveDataFolder=Vols suprimir totes les dades i la configuració?
-corsican.RemoveDataFolder=Eliminate tutti i dati è a cunfigurazione?
-czech.RemoveDataFolder=Odebrat všechna data a konfiguraci?
-danish.RemoveDataFolder=Remove all data and configuration?
-dutch.RemoveDataFolder=Remove all data and configuration?
-finnish.RemoveDataFolder=Poistetaanko kaikki tiedot ja asetukset?
-french.RemoveDataFolder=Supprimer toutes les données et la configuration ?
-german.RemoveDataFolder=Alle Daten und Konfiguration entfernen?
-hebrew.RemoveDataFolder=Remove all data and configuration?
-icelandic.RemoveDataFolder=Fjarlægja öll gögn og stillingar?
-italian.RemoveDataFolder=Rimuovere tutti i dati e la configurazione?
-japanese.RemoveDataFolder=すべてのデータと構成を削除しますか?
-norwegian.RemoveDataFolder=Vil du fjerne all data og konfigurasjon?
-polish.RemoveDataFolder=Usunąć wszystkie dane i konfigurację?
-portuguese.RemoveDataFolder=Remover todos os dados e configuração?
-russian.RemoveDataFolder=Удалить все данные и конфигурацию?
-slovak.RemoveDataFolder=Chcete odstrániť všetky údaje a konfiguráciu?
-slovenian.RemoveDataFolder=Želite odstraniti vse podatke in konfiguracijo?
-spanish.RemoveDataFolder=¿Eliminar todos los datos y la configuración?
-turkish.RemoveDataFolder=Tüm veriler ve yapılandırma kaldırılsın mı?
-ukrainian.RemoveDataFolder=Видалити всі дані та конфігурацію?
 
 [Tasks]
 Name: "runapp"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
