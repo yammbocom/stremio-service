@@ -35,6 +35,10 @@ jobs:
       - name: Build (bundled)
         run: cargo build --release --features=bundled
 
+      - name: Patch server.js CORS whitelist for yammbo.com
+        shell: bash
+        run: node patch-server-cors.js
+
       - name: Stage exe for the installer
         shell: bash
         run: |
