@@ -1,48 +1,59 @@
-# Copyright (C) 2017-2025 Smart Code OOD 203358507
-name: Windows Release
+# Yammbo TV Service — Windows build (rebranded fork of stremio-service)
+name: Yammbo Windows Build
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*'
 
 jobs:
-  windows-release:
+  windows-build:
     runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Rust setup
         uses: dtolnay/rust-toolchain@stable
-      - name: Build
-        run: cargo build --release --features=bundled
-      - name: Zip release for windows
-        uses: vimtor/action-zip@v1.1
-        with:
-          files: resources/bin/windows/ffmpeg.exe resources/bin/windows/ffprobe.exe resources/bin/windows/stremio-runtime.exe target/release/stremio-service.exe resources/bin/windows/server.js LICENSE.md
-          dest: stremio-service-windows.zip
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: eu-west-1
-
-      - name: Upload to Amazon S3
+      - name: Generate Yammbo icons & wizard images
+        shell: bash
         run: |
-          aws s3 cp --acl public-read stremio-service-windows.zip s3://stremio-artifacts/stremio-service-unsigned/${{ github.ref_name }}/
+          set -e
+          # App / installer icon (multi-resolution .ico) from the 512px Yammbo icon
+          magick branding/yambo-icon-512.png -define icon:auto-resize=256,128,64,48,32,24,16 resources/service.ico
+          magick branding/yambo-icon-512.png -define icon:auto-resize=256,128,64,48,32,24,16 resources/runtime.ico
+          # Tray icon
+          magick branding/yambo-icon-512.png -resize 256x256 icons/icon.png
+          # Wizard images: black canvas + centered Yammbo icon (match original BMP sizes)
+          magick branding/yambo-icon-512.png -resize 130x130 /tmp/ic_big.png
+          magick -size 164x314 xc:black /tmp/ic_big.png -gravity center -composite -type truecolor BMP3:setup/windows-installer.bmp
+          magick branding/yambo-icon-512.png -resize 48x48 /tmp/ic_small.png
+          magick -size 57x57 xc:black /tmp/ic_small.png -gravity center -composite -type truecolor BMP3:setup/windows-installer-header.bmp
 
-      - name: Get current date
-        id: date
-        run: echo "TODAY_DATE=$(date +'%d %b %Y')" >> $GITHUB_OUTPUT
-      - name: Upload zip file to release
-        uses: softprops/action-gh-release@v1
+      - name: Build (bundled)
+        run: cargo build --release --features=bundled
+
+      - name: Stage exe for the installer
+        shell: bash
+        run: |
+          set -e
+          mkdir -p stremio-service-windows
+          cp target/release/stremio-service.exe stremio-service-windows/stremio-service.exe
+
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup -y --no-progress
+
+      - name: Compile installer
+        shell: pwsh
+        run: |
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" setup/StremioService.iss
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
         with:
-          # Use the same name as all releases!
-          name: Stremio Service ${{ github.ref_name }} (${{ steps.date.outputs.TODAY_DATE }})
-          draft: true
-          prerelease: false
-          fail_on_unmatched_files: true
-          files: |
-            stremio-service-windows.zip
+          name: YammboTVServiceSetup
+          path: YammboTVServiceSetup.exe
+          if-no-files-found: error
