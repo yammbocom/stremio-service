@@ -22,8 +22,8 @@ jobs:
         run: |
           set -e
           # App / installer icon (multi-resolution .ico) from the 512px Yammbo icon
-          magick branding/yambo-icon-512.png -define icon:auto-resize=256,128,64,48,32,24,16 resources/service.ico
-          magick branding/yambo-icon-512.png -define icon:auto-resize=256,128,64,48,32,24,16 resources/runtime.ico
+          magick branding/yambo-icon-512.png -define icon:auto-resize=256,128,64,48,32,16 resources/service.ico
+          magick branding/yambo-icon-512.png -define icon:auto-resize=256,128,64,48,32,16 resources/runtime.ico
           # Tray icon
           magick branding/yambo-icon-512.png -resize 256x256 icons/icon.png
           # Wizard images: black canvas + centered Yammbo icon (match original BMP sizes)
