@@ -78,7 +78,9 @@ impl Config {
             lockfile,
             server,
             updater_endpoint,
-            skip_update: args.skip_updater,
+            // Yammbo Tv: always skip the auto-updater so the rebranded service
+            // can never silently replace itself with the upstream Stremio build.
+            skip_update: true,
             force_update: args.force_update,
         })
     }

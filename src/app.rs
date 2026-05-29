@@ -119,8 +119,8 @@ fn create_system_tray(
     event_loop: &EventLoop<UserEvent>,
     icon_dir: &PathBuf,
 ) -> Result<(Option<TrayIcon>, MenuId, MenuId), anyhow::Error> {
-    let open_item = MenuItem::new("Open Stremio Web", true, None);
-    let quit_item = MenuItem::new("Quit", true, None);
+    let open_item = MenuItem::new("Abrir Yammbo Tv", true, None);
+    let quit_item = MenuItem::new("Salir", true, None);
 
     let version_label = format!("v{}", env!("CARGO_PKG_VERSION"));
     let version_item = MenuItem::new(version_label.as_str(), false, None);

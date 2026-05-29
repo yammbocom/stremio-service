@@ -95,7 +95,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     #[cfg(target_os = "windows")]
     {
         let now = Local::now();
-        let copyright = format!("Copyright © {} Smart Code OOD", now.year());
+        let copyright = format!("Copyright © {} Yammbo", now.year());
         let description =
             std::env::var("CARGO_PKG_DESCRIPTION").expect("Failed to read package description");
 
@@ -103,10 +103,10 @@ fn main() -> Result<(), Box<dyn Error>> {
         let icon = icon_path.to_str().expect("Failed to find icon");
 
         let runtime_info = [
-            ("ProductName", "Stremio Runtime"),
+            ("ProductName", "Yammbo TV Runtime"),
             ("FileDescription", &description),
             ("LegalCopyright", &copyright),
-            ("CompanyName", "Stremio"),
+            ("CompanyName", "Yammbo"),
             ("InternalName", "stremio-runtime"),
             ("OriginalFilename", "stremio-runtime.exe"),
         ];

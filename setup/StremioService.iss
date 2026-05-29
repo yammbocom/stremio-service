@@ -1,7 +1,7 @@
 ; Copyright (C) 2017-2026 Smart Code OOD 203358507
 
-#define MyAppName "Stremio Service"
-#define MyAppShortName "StremioService"
+#define MyAppName "Yammbo TV Service"
+#define MyAppShortName "YammboTVService"
 #define MyAppExeName "stremio-service.exe"
 #define MyAppRoot SourcePath + "..\"
 #define MyAppBinLocation SourcePath + "..\stremio-service-windows\"
@@ -10,15 +10,15 @@
 #define MyAppVersion() GetVersionComponents(MyAppExeLocation, Local[0], Local[1], Local[2], Local[3]), \
   Str(Local[0]) + "." + Str(Local[1]) + "." + Str(Local[2])
 
-#define MyAppPublisher "Smart Code OOD"
+#define MyAppPublisher "Yammbo"
 #define MyAppCopyright "Copyright (C) 2017-" + GetDateTimeString('yyyy', '', '') + " " + MyAppPublisher
-#define MyAppURL "https://www.stremio.com/"
-#define MyAppGoodbyeURL "https://www.strem.io/goodbye"
+#define MyAppURL "https://tv.yammbo.com/"
+#define MyAppGoodbyeURL "https://tv.yammbo.com/"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{DD3870DA-AF3C-4C73-B010-72944AB610C6}
+AppId={{A9F3C7E2-5B41-4E8A-BC36-1D2E3F4A5B6C}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
@@ -27,7 +27,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppShortName}
-SetupMutex=StremioServiceSetupMutex,Global\StremioServiceSetupMutex
+SetupMutex=YammboTVServiceSetupMutex,Global\YammboTVServiceSetupMutex
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 DisableReadyPage=yes
@@ -47,8 +47,6 @@ WizardImageFile={#SourcePath}\windows-installer.bmp
 WizardSmallImageFile={#SourcePath}\windows-installer-header.bmp
 SetupIconFile={#SourcePath}..\resources\service.ico
 UninstallDisplayIcon={app}\{#MyAppExeName},0
-SignTool=stremiosign
-SignedUninstaller=yes
 
 [Code]
 function ShouldSkipPage(PageID: Integer): Boolean;
@@ -148,28 +146,28 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "{#MyAppExeLocation}"; DestDir: "{app}"; Flags: ignoreversion signonce
+Source: "{#MyAppExeLocation}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppRoot}LICENSE.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppResBinLocation}ffmpeg.exe"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}ffprobe.exe"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}stremio-runtime.exe"; DestDir: "{app}"; Flags: ignoreversion signonce
+Source: "{#MyAppResBinLocation}ffmpeg.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}ffprobe.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}stremio-runtime.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppResBinLocation}server.js"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppResBinLocation}avcodec-58.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}avdevice-58.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}avfilter-7.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}avformat-58.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}avutil-56.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}postproc-55.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}swresample-3.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
-Source: "{#MyAppResBinLocation}swscale-5.dll"; DestDir: "{app}"; Flags: ignoreversion signonce
+Source: "{#MyAppResBinLocation}avcodec-58.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}avdevice-58.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}avfilter-7.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}avformat-58.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}avutil-56.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}postproc-55.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}swresample-3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}swscale-5.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 [Registry]
 
 ; stremio: protocol
-Root: HKA; Subkey: "Software\Classes\StremioService"; ValueType: string; ValueName: ""; ValueData: "URL:Stremio Protocol"; Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\StremioService"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""; Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\StremioService\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"; Flags: uninsdeletekey
-Root: HKA; Subkey: "Software\Classes\StremioService\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""-o"" ""%1"""; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\YammboTVService"; ValueType: string; ValueName: ""; ValueData: "URL:Yammbo Tv Protocol"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\YammboTVService"; ValueType: string; ValueName: "URL Protocol"; ValueData: ""; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\YammboTVService\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\YammboTVService\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""-o"" ""%1"""; Flags: uninsdeletekey
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
