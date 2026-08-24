@@ -74,7 +74,7 @@ impl Config {
     fn node_bin() -> Result<&'static str, Error> {
         match std::env::consts::OS {
             "linux" | "macos" => Ok("stremio-runtime"),
-            "windows" => Ok("stremio-runtime.exe"),
+            "windows" => Ok("YammboTVRuntime.exe"),
             os => bail!("Operating system {} is not supported", os),
         }
     }

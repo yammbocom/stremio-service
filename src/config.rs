@@ -78,9 +78,14 @@ impl Config {
             lockfile,
             server,
             updater_endpoint,
-            // Yammbo Tv: always skip the auto-updater so the rebranded service
-            // can never silently replace itself with the upstream Stremio build.
-            skip_update: true,
+            // Yammbo Tv: la auto-actualizacion esta ACTIVA, pero solo contra
+            // nuestro dominio: UPDATE_ENDPOINT (constants.rs) apunta siempre a
+            // tv.yammbo.com, nunca a Stremio, asi que el servicio no puede
+            // reemplazarse por el build original. El endpoint devuelve la
+            // version y el sha256 del instalador, y el cliente verifica el
+            // checksum antes de ejecutar nada.
+            // Se puede desactivar en tiempo de ejecucion con --skip-updater.
+            skip_update: args.skip_updater,
             force_update: args.force_update,
         })
     }

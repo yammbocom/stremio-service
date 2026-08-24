@@ -2,7 +2,7 @@
 
 #define MyAppName "Yammbo TV Service"
 #define MyAppShortName "YammboTVService"
-#define MyAppExeName "stremio-service.exe"
+#define MyAppExeName "YammboTVService.exe"
 #define MyAppRoot SourcePath + "..\"
 #define MyAppBinLocation SourcePath + "..\stremio-service-windows\"
 #define MyAppResBinLocation SourcePath + "..\resources\bin\windows\"
@@ -86,6 +86,9 @@ begin
 end;
 
 [Languages]
+; El .isl espanol lo descarga el workflow: el paquete de choco solo trae
+; Default.isl, asi que sin ese paso ISCC falla al compilar.
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [CustomMessages]
@@ -102,7 +105,7 @@ Source: "{#MyAppExeLocation}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppRoot}LICENSE.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppResBinLocation}ffmpeg.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppResBinLocation}ffprobe.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppResBinLocation}stremio-runtime.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppResBinLocation}stremio-runtime.exe"; DestDir: "{app}"; DestName: "YammboTVRuntime.exe"; Flags: ignoreversion
 Source: "{#MyAppResBinLocation}server.js"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppResBinLocation}avcodec-58.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppResBinLocation}avdevice-58.dll"; DestDir: "{app}"; Flags: ignoreversion

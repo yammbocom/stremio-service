@@ -107,8 +107,8 @@ fn main() -> Result<(), Box<dyn Error>> {
             ("FileDescription", &description),
             ("LegalCopyright", &copyright),
             ("CompanyName", "Yammbo"),
-            ("InternalName", "stremio-runtime"),
-            ("OriginalFilename", "stremio-runtime.exe"),
+            ("InternalName", "YammboTVRuntime"),
+            ("OriginalFilename", "YammboTVRuntime.exe"),
         ];
 
         edit_exe_resources(
