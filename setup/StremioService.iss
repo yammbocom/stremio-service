@@ -94,8 +94,13 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [CustomMessages]
 RemoveDataFolder=Remove all data and configuration?
 english.RemoveDataFolder=Remove all data and configuration?
+spanish.RemoveDataFolder=Borrar todos los datos y la configuracion?
+AutostartTask=Start automatically when Windows starts (recommended)
+english.AutostartTask=Start automatically when Windows starts (recommended)
+spanish.AutostartTask=Iniciar automaticamente al encender el equipo (recomendado)
 
 [Tasks]
+Name: "autostart"; Description: "{cm:AutostartTask}"
 Name: "runapp"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"
 
@@ -117,6 +122,15 @@ Source: "{#MyAppResBinLocation}swresample-3.dll"; DestDir: "{app}"; Flags: ignor
 Source: "{#MyAppResBinLocation}swscale-5.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 [Registry]
+
+; Arranque con Windows. Solo si el usuario deja marcada la casilla; se borra
+; al desinstalar (uninsdeletevalue).
+;
+; SIN argumentos a proposito: el servicio ya arranca discreto en la bandeja y
+; solo abre la web cuando se pulsa "Abrir Yammbo Tv" en el menu. Cuidado con
+; poner "-s" aqui: es el atajo de --skip-updater, no de "silencioso", y
+; desactivaria la auto-actualizacion en cada encendido.
+Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppShortName}"; ValueData: """{app}\{#MyAppExeName}"""; Flags: uninsdeletevalue; Tasks: autostart
 
 ; stremio: protocol
 Root: HKA; Subkey: "Software\Classes\YammboTVService"; ValueType: string; ValueName: ""; ValueData: "URL:Yammbo Tv Protocol"; Flags: uninsdeletekey
